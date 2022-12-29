@@ -28,6 +28,7 @@ color: var(--text-title-color);
 }
 
 
+
 /* Стили для обнуления верхних отступов у элементов */
 h1,
 h2,
@@ -107,7 +108,7 @@ border-bottom: 1px solid var(--header-border);
     content: "";
     display: block;
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     width: 100%;
     height: 4px;
@@ -681,8 +682,7 @@ height: 100%;
 border-radius: 50%;
 color: var(--icon-team-color);
 
-transition-property: color;
-transition-property: background-color;
+transition-property: background-color, color;
 transition-duration: var(--transition-duration);
 transition-timing-function: var(--t-timing-f);
 }
@@ -756,9 +756,7 @@ padding-right: 30px;
 
 color: var(--icon-team-color);
 
-
-transition-property: border;
-transition-property: color;
+transition-property: color, border;
 transition-delay: var(--transition-duration);
 transition-timing-function: var(--t-timing-f);
 }
@@ -814,6 +812,7 @@ font-size: 16px;
 line-height: 1.62;
 letter-spacing: 0.03em;
 
+transition-property: background-color, color, box-shadow;
 transition-duration: var(--transition-duration);
 transition-timing-function: var(--t-timing-f);
 }
@@ -825,7 +824,6 @@ transition-timing-function: var(--t-timing-f);
 background-color: var(--hover-color);
 color: var(--white-cololr);
 box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
-border-radius: 4px;
 }
 
 /*Examples works*/
@@ -867,6 +865,7 @@ margin-bottom: 30px;
 display: flex;
 flex-direction: column;
 
+transition-property: box-shadow;
 transition-duration: var(--transition-duration);
 transition-timing-function: var(--t-timing-f);
 }
@@ -880,9 +879,6 @@ box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
 1px 4px 6px rgba(0, 0, 0, 0.16);
 
 }
-
-
-
 
 .examples-card-thumb
 {
@@ -911,11 +907,13 @@ box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     color: var(--white-cololr);
     background-color: var(--bgc-cards-overlay);
 
+
+  
     transform: translateY(100%);
+    opacity: 0;
+    transition-property: transform, opacity;
     transition-duration: var(--transition-duration);
     transition-timing-function: var(--t-timing-f);
-
-    opacity: 0;
 }
 
 .examples-item:hover .examples-card-overlay
@@ -964,10 +962,12 @@ letter-spacing: 0.03em;
 
     opacity: 1;
 
-    transition: opacity 250ms var(--t-timing-f);
+    transition: opacity var(--transition-duration) var(--t-timing-f),
+    visibility var(--transition-duration) var(--t-timing-f);
 }
 
-.backdrop.is-hidden {
+.backdrop.is-hidden 
+{
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
@@ -991,23 +991,27 @@ letter-spacing: 0.03em;
     border-radius: 4px;
 
     transform: translate(-50%, -50%) scale(1);
+    transition: transform var(--transition-duration) var(--t-timing-f);
 }
 
 .backdrop.is-hidden .modal
 {
-transform: translate(-50%, -50%) scale(0.6);
+   transform: translate(-50%, -50%) scale(0.6);
 }
 
 
 .modal-close
 {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 8px;
     right: 8px;
 
     width: 30px;
     height: 30px;
-padding: 0;
+    padding: 0;
     border-radius: 50%;
 
     background-color: inherit;
